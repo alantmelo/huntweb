@@ -43,7 +43,7 @@ export default class Main extends Component {
     }
 
     render(){
-        const {products} = this.state;
+        const {products, page, productInfo} = this.state;
         return (
             <div className="products-list">
                 {/* <h1>Number of Products {this.state.total}</h1> */}
@@ -55,8 +55,8 @@ export default class Main extends Component {
                     </article>
                 ))}
                 <div className="actions">
-                    <button onClick={this.prevPage}>Back</button>
-                    <button onClick={this.nextPage}>Forward</button>
+                    <button disabled={page === 1} onClick={this.prevPage}>Back</button>
+                    <button disabled={page === productInfo.pages} onClick={this.nextPage}>Forward</button>
                 </div>
             </div>
         )
