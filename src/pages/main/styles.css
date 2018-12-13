@@ -65,3 +65,7 @@
     opacity: 0.5;
     cursor: default;
 }
+
+.products-list .actions button[disabled]:hover{
+    opacity: 0.5;
+}

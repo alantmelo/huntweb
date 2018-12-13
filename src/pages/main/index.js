@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import api from './../../services/api';
 import './styles.css';
+import { Link } from 'react-router-dom';
 
 export default class Main extends Component {
     state = {
@@ -15,7 +16,7 @@ export default class Main extends Component {
 
     loadProduct = async (page = 1) => {
         const response = await api.get(`/products?page=${page}`);
-
+        console.log(response.data.docs[0]._id)
         const { docs, ...productInfo } = response.data;
 
         this.setState({products: docs, productInfo, page});
@@ -46,12 +47,11 @@ export default class Main extends Component {
         const {products, page, productInfo} = this.state;
         return (
             <div className="products-list">
-                {/* <h1>Number of Products {this.state.total}</h1> */}
                 {products.map(product => (
                     <article key={product._id}>
                         <strong>{product.title}</strong>
                         <p>{product.description}</p>
-                        <a href="">Acessar</a>
+                        <Link to={`/product/${product._id}`}>Acessar</Link>
                     </article>
                 ))}
                 <div className="actions">
